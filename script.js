@@ -30,7 +30,6 @@ const fetchAllPlayers = async () => {
     const data = await response.json();
     console.log("Fetched Players Data:", data);
 
-    // Now access the players array from the nested `data` object
     const players = data.data.players;
 
     if (Array.isArray(players)) {
@@ -41,7 +40,7 @@ const fetchAllPlayers = async () => {
     }
   } catch (err) {
     console.error("Error fetching players:", err);
-    return []; // Return empty array if fetch fails
+    return [];
   }
 };
 
@@ -83,7 +82,6 @@ const addNewPlayer = async (playerObj) => {
       throw new Error(json.message);
     }
 
-    // Fetch all players after adding the new one
     const players = await fetchAllPlayers();
     renderAllPlayers(players);
   } catch (err) {
