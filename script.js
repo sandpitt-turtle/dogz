@@ -14,6 +14,11 @@ closeFormButton.addEventListener("click", () => {
   formPopup.style.display = "none";
 });
 
+formPopup.addEventListener("click", (event) => {
+  if (event.target === formPopup) {
+    formPopup.style.display = "none";
+  }
+});
 /**
  * Fetches all players from the API.
  * @returns {Object[]} the array of player objects
@@ -28,11 +33,12 @@ const fetchAllPlayers = async () => {
     }
 
     const data = await response.json();
-    console.log("Fetched Players Data:", data);
+    console.log("Fetched Players Data:", data.data.players);
 
     const players = data.data.players;
 
     if (Array.isArray(players)) {
+      console.log("Players found:", players);
       return players;
     } else {
       console.error("Fetched data.players is not an array:", data);
@@ -125,6 +131,7 @@ const removePlayer = async (playerId) => {
  * - image (with alt text of the player's name)
  *
  * Additionally, each card has two buttons:
+ *
  * - "See details" button that, when clicked, calls `renderSinglePlayer` to
  *    display more information about the player
  * - "Remove from roster" button that, when clicked, will call `removePlayer` to
@@ -142,8 +149,11 @@ const renderAllPlayers = (playerList) => {
   }
 
   playerList.forEach((player) => {
+    console.log(player);
+
     const playerBlock = document.createElement("div");
     playerBlock.classList.add("player-block");
+    playerBlock.setAttribute("data-player-id", player.id);
 
     playerBlock.innerHTML = `
       <img src="${player.imageUrl}" alt="${player.name}" />
@@ -162,7 +172,7 @@ const renderAllPlayers = (playerList) => {
         .closest(".player-block")
         .querySelector("p")
         .textContent.split(" ")[1];
-      removePlayer(playerId);
+      removePlayer(playerId); // Call removePlayer with the specific ID
     }
 
     if (event.target.classList.contains("details-btn")) {
@@ -171,7 +181,7 @@ const renderAllPlayers = (playerList) => {
         .querySelector("p")
         .textContent.split(" ")[1];
       fetchSinglePlayer(playerId).then((playerData) => {
-        renderSinglePlayer(playerData);
+        renderSinglePlayer(playerData); // Render the player details
       });
     }
   });
@@ -194,16 +204,19 @@ const renderSinglePlayer = (player) => {
   const main = document.querySelector("main");
   main.innerHTML = `
   <div class="player-block">
-  <img src="${player.imageUrl}" alt="${player.name}" />
-  <h3>${player.name}</h3>
-  <p>ID: ${player.id}</p>
-  <button class="remove-btn">Remove from roster</button> 
-</div>
+    <img src="${player.imageUrl}" alt="${player.name}" />
+    <h3>${player.name}</h3>
+    <p>ID: ${player.id}</p>
+    <p>Breed: ${player.breed}</p>
+    <p>Team: ${player.team || "Unassigned"}</p>
+    <button class="back_to_all_players">Back to all players</button>
+    <button class="remove-btn">Remove from roster</button> 
+  </div>
   `;
 
-  const backButton = document.getElementById("back-btn");
+  const backButton = document.querySelector(".back_to_all_players");
   backButton.addEventListener("click", () => {
-    init();
+    init(); // Re-render the full player list when "Back to all players" is clicked
   });
 };
 
@@ -222,7 +235,7 @@ const renderNewPlayerForm = () => {
       const name = document.getElementById("name").value.trim();
       const imageUrl = document.getElementById("imageUrl").value.trim();
       const breed = document.getElementById("breed").value.trim();
-      const team = document.getElementById("team").value.trim() || null;
+      let team = document.getElementById("team").value.trim() || "Unassigned";
 
       const playerObj = { name, imageUrl, breed, team };
       await addNewPlayer(playerObj);
