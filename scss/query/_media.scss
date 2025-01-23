@@ -1,0 +1,14 @@
+@media (min-width: 480px) {
+  #player_list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  #player_list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .player-block {
+    max-width: 250px;
+  }
+}

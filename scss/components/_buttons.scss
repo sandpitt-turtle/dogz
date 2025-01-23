@@ -1,0 +1,97 @@
+//
+
+button {
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  color: black;
+  background-color: white;
+}
+
+button:hover {
+  background-color: #ccc;
+  color: #000;
+  box-shadow: 0 1px 3px grey;
+}
+
+#show_form {
+  padding: 12px 20px;
+  background: linear-gradient(to left, lightblue, #00ffa2);
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  position: relative;
+  z-index: 10;
+}
+
+#show_form:hover {
+  background-color: rosybrown;
+  transform: scale(1.01);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#show_form:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px lightblue;
+}
+
+#submit_button {
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(to left, lightblue, #00ffa2);
+  border: 1px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  position: relative;
+  z-index: 10; 
+}
+
+#submit_button:hover {
+  background-color: rosybrown;
+  transform: scale(1.01);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+#submit_button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px lightblue;
+}
+
+.details-btn {
+  background: linear-gradient(to left, #ffbbff, #00ffa2);
+  padding: 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s, transform 0.3s;
+  width: 80%; 
+}
+
+.details-btn:hover {
+  background-color: #ccc;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.remove-btn {
+  background-color: transparent !important;
+  color: grey !important;
+  font-size: 10px !important;
+  padding: top 10px !important;
+  padding-bottom: 0.5px !important;
+  border: none !important;
+  cursor: pointer;
+  width: 80%; 
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.remove-btn:hover {
+  background-color: grey;
+  transform: scale(1.09) !important;
+  box-shadow: none !important;
+}

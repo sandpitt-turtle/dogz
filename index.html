@@ -4,12 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/css/main.css" />
     <title>PuppyBowl</title>
   </head>
   <body>
-    <form id="new-player-form"></form>
-    <main></main>
+    <header>
+      <button id="show_form">Add New Player</button>
+    </header>
+
+    <div id="form_pop" class="overlay" style="display: none">
+      <div class="popup">
+        <span id="close_button" class="close">&times;</span>
+
+        <form id="new-player-form">
+          <h2>Add New Player</h2>
+
+          <label for="name">Player Name:</label>
+          <input type="text" id="name" required />
+
+          <label for="imageUrl">Image URL:</label>
+          <input type="url" id="imageUrl" required />
+
+          <label for="breed">Breed:</label>
+          <input type="text" id="breed" required />
+
+          <label for="team">Team:</label>
+          <input type="text" id="team" />
+
+          <button type="submit" id="submit_button">Add Player</button>
+        </form>
+      </div>
+    </div>
+
+    <main>
+      <div id="player_list"></div>
+    </main>
+
     <script src="./script.js"></script>
   </body>
 </html>

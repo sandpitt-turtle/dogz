@@ -1,0 +1,28 @@
+.popup {
+  padding: 20px;
+  border: 1px solid black;
+  background-color: white;
+  width: 300px;
+  max-width: 90%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.popup input,
+.popup textarea {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.popup button {
+  padding: 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,12 +1,13 @@
 PLAN//
 
-1| Aux1 branch added -- NO
+<!--
+1| Aux1 branch added -- YES -->
 
-2| Commits -- NO
+<!-- 2| Commits -- YES --general file starts  -->
 
 3| HTML => Players rendereed on cards with information -- NO
 
-4| CSS form styles -- NO
+<!-- 4| CSS form styles -- YES -->
 
 5| Cards styles -- NO
 
@@ -24,4 +25,5 @@ PLAN//
 
 12| Can add player to roster -- NO
 
-13| Mobile-first design using flex, grid, or media queries.
+<!--
+13| Mobile-first design using flex, grid, or media queries. -- YES -->
