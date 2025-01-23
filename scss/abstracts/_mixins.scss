@@ -1,0 +1,13 @@
+@mixin button($bg-color, $hover-color) {
+  padding: 10px;
+  border: 1px solid $color-black;
+  cursor: pointer;
+  background-color: $bg-color;
+  color: $color-black;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: $hover-color;
+    transform: scale(1.05);
+  }
+}
