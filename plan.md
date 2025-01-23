@@ -9,7 +9,7 @@ PLAN//
 
 <!-- 4| CSS form styles -- YES -->
 
-5| Cards styles -- NO
+<!-- 5| Cards styles -- YES -->
 
 6| DOM generates and manipulates HTML styles -- NO
 
@@ -21,9 +21,8 @@ PLAN//
 
 10| Can view single players -- NO
 
-11| Can remove player from roster -- NO
+<!-- 11| Can remove player from roster -- YES -->
 
-12| Can add player to roster -- NO
+<!-- 12| Can add player to roster -- YES -->
 
-<!--
-13| Mobile-first design using flex, grid, or media queries. -- YES -->
+<!--13| Mobile-first design using flex, grid, or media queries. -- YES -->

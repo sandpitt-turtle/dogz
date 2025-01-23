@@ -15,21 +15,18 @@ button {
 }
 
 main {
-  flex-grow: 1; 
-  padding-top: 20px; 
+  flex-grow: 1;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
-
-
 
 #show_form {
   font-family: "Roboto Condensed", sans-serif;
   font-size: 16px;
-  color: white; 
+  color: white;
   font-weight: lighter;
-
 }

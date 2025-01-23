@@ -116,16 +116,21 @@ const removePlayer = async (playerId) => {
 
 /**
  * Updates `<main>` to display a list of all players.
+ *
  * If there are no players, a corresponding message is displayed instead.
+ *
  * Each player is displayed in a card with the following information:
  * - name
  * - id
  * - image (with alt text of the player's name)
+ *
  * Additionally, each card has two buttons:
  * - "See details" button that, when clicked, calls `renderSinglePlayer` to
  *    display more information about the player
  * - "Remove from roster" button that, when clicked, will call `removePlayer` to
  *    remove that specific player and then re-render all players
+ *
+ * Note: this function should replace the current contents of `<main>`, not append to it.
  * @param {Object[]} playerList - an array of player objects
  */
 const renderAllPlayers = (playerList) => {
@@ -174,6 +179,15 @@ const renderAllPlayers = (playerList) => {
 
 /**
  * Updates `<main>` to display a single player.
+ * The player is displayed in a card with the following information:
+ * - name
+ * - id
+ * - breed
+ * - image (with alt text of the player's name)
+ * - team name, if the player has one, or "Unassigned"
+ *
+ * The card also contains a "Back to all players" button that, when clicked,
+ * will call `renderAllPlayers` to re-render the full list of players.
  * @param {Object} player an object representing a single player
  */
 const renderSinglePlayer = (player) => {
@@ -184,7 +198,6 @@ const renderSinglePlayer = (player) => {
   <h3>${player.name}</h3>
   <p>ID: ${player.id}</p>
   <button class="remove-btn">Remove from roster</button> 
-  <button class="details-btn">See Details</button>
 </div>
   `;
 
