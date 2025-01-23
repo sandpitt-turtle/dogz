@@ -1,5 +1,5 @@
-const cohortName = "2410-ftb-et-web-am";
-const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/2410-ftb-et-web-am/players`;
+const cohortName = "2404-ftb-et-web-am";
+const API_URL = `https://fsa-puppy-bowl.herokuapp.com/api/2404-ftb-et-web-am/players`;
 
 const showFormButton = document.getElementById("show_form");
 const formPopup = document.getElementById("form_pop");
@@ -58,7 +58,7 @@ const fetchAllPlayers = async () => {
 const fetchSinglePlayer = async (playerId) => {
   try {
     const response = await fetch(
-      `https://fsa-puppy-bowl.herokuapp.com/api/2410-ftb-et-web-am/players/${playerId}`
+      `https://fsa-puppy-bowl.herokuapp.com/api/2404-ftb-et-web-am/players/${playerId}`
     );
     const data = await response.json();
     return data.data;
@@ -75,7 +75,7 @@ const fetchSinglePlayer = async (playerId) => {
 const addNewPlayer = async (playerObj) => {
   try {
     const response = await fetch(
-      `https://fsa-puppy-bowl.herokuapp.com/api/2410-ftb-et-web-am/players`,
+      `https://fsa-puppy-bowl.herokuapp.com/api/2404-ftb-et-web-am/players`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -102,7 +102,7 @@ const addNewPlayer = async (playerObj) => {
 const removePlayer = async (playerId) => {
   try {
     const response = await fetch(
-      `https://fsa-puppy-bowl.herokuapp.com/api/2410-ftb-et-web-am/players/${playerId}`,
+      `https://fsa-puppy-bowl.herokuapp.com/api/2404-ftb-et-web-am/players/${playerId}`,
       {
         method: "DELETE",
       }
