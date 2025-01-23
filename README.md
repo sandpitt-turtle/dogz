@@ -1,7 +1,6 @@
 Dogz dogz dogz
 
-
-# Puppy Bowl Career Simulation (Core) - RUBRIC  
+# Puppy Bowl Career Simulation (Core) - RUBRIC
 
 ## Criteria
 
