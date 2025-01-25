@@ -35,15 +35,7 @@ const fetchAllPlayers = async () => {
     const data = await response.json();
     console.log("Fetched Players Data:", data.data.players);
 
-    const players = data.data.players;
-
-    if (Array.isArray(players)) {
-      console.log("Players found:", players);
-      return players;
-    } else {
-      console.error("Fetched data.players is not an array:", data);
-      return [];
-    }
+    return Array.isArray(data.data.players) ? data.data.players : [];
   } catch (err) {
     console.error("Error fetching players:", err);
     return [];
@@ -141,6 +133,7 @@ const removePlayer = async (playerId) => {
  * @param {Object[]} playerList - an array of player objects
  */
 const renderAllPlayers = (playerList) => {
+  console.log("Rendering all players:", playerList);
   playerListContainer.innerHTML = "";
 
   if (playerList.length === 0) {
@@ -149,8 +142,7 @@ const renderAllPlayers = (playerList) => {
   }
 
   playerList.forEach((player) => {
-    console.log(player);
-
+    console.log("Rendering player:", player);
     const playerBlock = document.createElement("div");
     playerBlock.classList.add("player-block");
     playerBlock.setAttribute("data-player-id", player.id);
@@ -166,23 +158,20 @@ const renderAllPlayers = (playerList) => {
     playerListContainer.appendChild(playerBlock);
   });
 
-  playerListContainer.addEventListener("click", (event) => {
+  console.log("Updated player list container:", playerListContainer.innerHTML);
+
+  playerListContainer.addEventListener("click", async (event) => {
     if (event.target.classList.contains("remove-btn")) {
-      const playerId = event.target
-        .closest(".player-block")
-        .querySelector("p")
-        .textContent.split(" ")[1];
-      removePlayer(playerId); // Call removePlayer with the specific ID
+      const playerId = event.target.closest(".player-block").dataset.playerId;
+      await removePlayer(playerId);
+      const players = await fetchAllPlayers();
+      renderAllPlayers(players);
     }
 
     if (event.target.classList.contains("details-btn")) {
-      const playerId = event.target
-        .closest(".player-block")
-        .querySelector("p")
-        .textContent.split(" ")[1];
-      fetchSinglePlayer(playerId).then((playerData) => {
-        renderSinglePlayer(playerData); // Render the player details
-      });
+      const playerId = event.target.closest(".player-block").dataset.playerId;
+      const playerData = await fetchSinglePlayer(playerId);
+      renderSinglePlayer(playerData); // Render the single player view
     }
   });
 };
@@ -202,22 +191,37 @@ const renderAllPlayers = (playerList) => {
  */
 const renderSinglePlayer = (player) => {
   const main = document.querySelector("main");
+
   main.innerHTML = `
-  <div class="player-block">
-    <img src="${player.imageUrl}" alt="${player.name}" />
-    <h3>${player.name}</h3>
-    <p>ID: ${player.id}</p>
-    <p>Breed: ${player.breed}</p>
-    <p>Team: ${player.team || "Unassigned"}</p>
-    <button class="back_to_all_players">Back to all players</button>
-    <button class="remove-btn">Remove from roster</button> 
-  </div>
+    <div class="player-block">
+      <img src="${player.imageUrl}" alt="${player.name}" />
+      <h3>${player.name}</h3>
+      <p>ID: ${player.id}</p>
+      <p>Breed: ${player.breed}</p>
+      <p>Team: ${player.team || "Unassigned"}</p>
+      <button class="back_to_all_players">Back to all players</button>
+      <button class="remove-btn">Remove from roster</button> 
+    </div>
   `;
 
-  const backButton = document.querySelector(".back_to_all_players");
-  backButton.addEventListener("click", () => {
-    init(); // Re-render the full player list when "Back to all players" is clicked
-  });
+  const backButton = main.querySelector(".back_to_all_players");
+  if (backButton) {
+    backButton.addEventListener("click", async () => {
+      console.log("Back to all players button clicked");
+      const players = await fetchAllPlayers();
+      renderAllPlayers(players);
+    });
+  }
+
+  const removeButton = main.querySelector(".remove-btn");
+  if (removeButton) {
+    removeButton.addEventListener("click", async () => {
+      console.log("Remove button clicked for player ID:", player.id);
+      await removePlayer(player.id);
+      const players = await fetchAllPlayers();
+      renderAllPlayers(players);
+    });
+  }
 };
 
 /**
@@ -235,7 +239,7 @@ const renderNewPlayerForm = () => {
       const name = document.getElementById("name").value.trim();
       const imageUrl = document.getElementById("imageUrl").value.trim();
       const breed = document.getElementById("breed").value.trim();
-      let team = document.getElementById("team").value.trim() || "Unassigned";
+      const team = document.getElementById("team").value.trim() || "Unassigned";
 
       const playerObj = { name, imageUrl, breed, team };
       await addNewPlayer(playerObj);
