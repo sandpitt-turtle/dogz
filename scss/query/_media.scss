@@ -12,3 +12,16 @@
     max-width: 250px;
   }
 }
+
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #show_form {
+    margin: 10px 0 0 0; /* Adds margin to separate the button from the header */
+    position: relative; /* Ensure it's part of the normal flow */
+  }
+}
