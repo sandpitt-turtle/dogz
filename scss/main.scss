@@ -1,8 +1,14 @@
+@use "./base/global";
 @use "./base/reset";
 @use "./base/typ";
 @use "./components/buttons";
 @use "./components/popup";
-@use "./layout/form";
-@use "./layout/playerblock";
-@use "./layout/playerlist";
+@use "./components/form";
+@use "./components/playerblock";
+@use "./components/playerlist";
+@use "./layout/pop";
+@use "./layout/grid";
+@use "./layout/main";
+@use "./layout/block";
+@use "./layout/list";
 @use "./query/media";
