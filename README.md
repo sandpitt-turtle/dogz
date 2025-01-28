@@ -4,7 +4,6 @@ Dogz dogz dogz
 
 ## Criteria
 
-### Github Project
 
 <!-- - **Github repository has at least one branch in addition to main branch.**
 

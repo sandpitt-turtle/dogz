@@ -26,8 +26,10 @@ formPopup.addEventListener("click", (event) => {
 const fetchAllPlayers = async () => {
   try {
     const response = await fetch(API_URL);
+    console.log(`fetch all players ${response.data }`) 
     if (!response.ok) throw new Error(`Failed to fetch players. Status: ${response.status}`);
     const data = await response.json();
+    console.log(`feth all players ${data}`) 
     return data.data.players || [];
   } catch (error) {
     console.error("Error fetching all players:", error);
@@ -45,13 +47,18 @@ const fetchAllPlayers = async () => {
 const fetchSinglePlayer = async (playerId) => {
   try {
     const response = await fetch(`${API_URL}/${playerId}`);
+    console.log(`fetching single player ${response}`)
     if (!response.ok) throw new Error(`Failed to fetch player #${playerId}`);
     const data = await response.json();
-    return data.data;
+    console.log("Single Player API Response:", data); // Log API response
+    return data.data; // Return the actual player object
   } catch (error) {
-    console.error(`Oh no, trouble fetching player #${playerId}!`, err);
+    console.error(`Error fetching player #${playerId}:`, error);
+    return null;
   }
 };
+
+
 
 /**
  * Adds a new player to the roster via the API.
@@ -67,6 +74,7 @@ const addNewPlayer = async (playerObj) => {
     });
 
      const json = await response.json();
+     console.log(`fetching single player ${json}`)
     if (json.error) throw new Error(json.message);
     await updatePlayerList();
   } catch (error) {
@@ -127,20 +135,21 @@ const renderAllPlayers = (playerList) => {
   playerList.forEach((player) => {
     const playerBlock = document.createElement("div");
     playerBlock.classList.add("player-block");
-    playerBlock.setAttribute("data-player-id", player.id);
+    playerBlock.setAttribute("data-player-id", player.id || 'N/A');
     const defaultImage = "/dog.jpg"; // Replace with your fallback image path
     playerBlock.innerHTML = `
-      <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='${defaultImage}'" />
-      <h3>${player.name}</h3>
-      <p>ID: ${player.id}</p>
+      <img src="${player.imageUrl || defaultImage}" alt="${player.name || 'Unknown'}" onerror="this.src='${defaultImage}'" />
+      <h3>${player.name || 'Unknown'}</h3>
+      <p>ID: ${player.id || 'N/A'}</p>
       <button class="details-btn">See Details</button>
       <button class="remove-btn">Remove from roster</button>
     `;
     playerListContainer.appendChild(playerBlock);
   });
 
-  setupPlayerButtons();
+  setupPlayerButtons(); // Attach listeners
 };
+
 
 const setupPlayerButtons = () => {
   playerListContainer.addEventListener("click", async (event) => {
@@ -150,15 +159,22 @@ const setupPlayerButtons = () => {
     const playerId = playerBlock.dataset.playerId;
 
     if (event.target.classList.contains("remove-btn")) {
+      console.log("Remove button clicked:", playerId);
       await removePlayer(playerId);
     }
 
     if (event.target.classList.contains("details-btn")) {
+      console.log("Details button clicked:", playerId); // Log the button click and playerId
       const player = await fetchSinglePlayer(playerId);
-      renderSinglePlayer(player);
+      if (player) {
+        renderSinglePlayer(player);
+      } else {
+        alert("Error fetching player details. Please try again.");
+      }
     }
   });
 };
+
 
 
 
@@ -176,15 +192,21 @@ const setupPlayerButtons = () => {
  * @param {Object} player an object representing a single player
  */
 const renderSinglePlayer = (player) => {
+  console.log("Player object in renderSinglePlayer:", player);
+
   const main = document.querySelector("main");
+  if (!player) {
+    main.innerHTML = `<p>Error loading player details. Please try again later.</p>`;
+    return;
+  }
 
   main.innerHTML = `
-    <div class="player-block single-player-block" data-player-id="${player.id}">
-      <img src="${player.imageUrl || '/dog.jpg'}" alt="${player.name || 'Unknown'}" />
+    <div class="player-block single-player-block" data-player-id="${player.id || 'N/A'}">
+      <img src="${player.imageUrl || '/dog.jpg'}" alt="${player.name || 'Unknown'}" onerror="this.src='/dog.jpg'" />
       <h3>${player.name || 'Unknown'}</h3>
       <p>ID: ${player.id || 'N/A'}</p>
       <p>Breed: ${player.breed || 'Unknown'}</p>
-      <p>Team: ${player.team || 'Unassigned'}</p>
+      <p>Status: ${player.status || 'Unspecified'}</p>
       <div class="button-container">
         <button class="back_to_all_players">Back to all players</button>
         <button class="remove-btn">Remove from roster</button>
@@ -192,17 +214,38 @@ const renderSinglePlayer = (player) => {
     </div>
   `;
 
-  // Ensure buttons are added after the DOM is updated
   main.querySelector(".back_to_all_players").addEventListener("click", async () => {
     console.log("Back to All Players clicked");
     await updatePlayerList();
   });
 
   main.querySelector(".remove-btn").addEventListener("click", async () => {
-    console.log("Remove from Roster clicked");
-    await removePlayer(player.id);
-    await updatePlayerList();
+    console.log("Remove from Roster clicked for Player ID:", player.id);
+
+    if (!player.id) {
+      alert("Player ID is missing or invalid. Unable to remove the player.");
+      return;
+    }
+
+    try {
+      await removePlayer(player.id); // Remove the player from the API
+      await updatePlayerList(); // Re-render the list of players
+      alert(`Player ${player.name} has been removed.`);
+    } catch (error) {
+      console.error(`Failed to remove player ${player.id}:`, error);
+      alert("An error occurred while removing the player. Please try again.");
+    }
   });
+
+
+
+console.log("Player object in renderSinglePlayer:", player);
+console.log("Player Name:", player.name);
+console.log("Player Image URL:", player.imageUrl);
+console.log("Player Breed:", player.breed);
+console.log("Player Status:", player.status);
+
+
 };
 
 

@@ -1,0 +1,15 @@
+main {
+    border: 2px solid blue; /* Highlight the main container */
+    min-height: 200px; /* Ensure it has enough height */
+  }
+  
+  .single-player-block {
+    border: 2px solid red; /* Highlight single player block */
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  img {
+    max-width: 200px;
+  }
+  
