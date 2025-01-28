@@ -1,16 +1,13 @@
-Dogz dogz dogz
-
 # Puppy Bowl Career Simulation (Core) - RUBRIC
 
 ## Criteria
 
+* _Github repository has at least one branch in addition to main branch._
 
-<!-- - **Github repository has at least one branch in addition to main branch.**
+  * _1 Point: Observed_
 
-  - **1 Point**: Observed -->
-
-<!-- - **Student has at least one commit towards the final result.**
-  - **1 Point**: Observed -->
+* _Student has at least one commit towards the final result._
+  * _1 Point: Observed_
 
 
 ### HTML Requirements
@@ -20,18 +17,16 @@ Dogz dogz dogz
 
 ### CSS Requirements
 
-<!-- - **Form is styled and easy to use.**
+* _Form is styled and easy to use._
 
-  - **1 Point**: Observed
- -->
+  * _1 Point: Observed_
 
-<!-- - **Player cards are styled.**
+* _Player cards are styled._
 
-  - **1 Point**: Observed -->
+  * _1 Point: Observed_
 
-
-<!-- - **Considers mobile-first design principles and uses one of the following: flex, grid or media queries.**
-  - **1 Point**: Observed -->
+* _Considers mobile-first design principles and uses one of the following: flex, grid or media queries._
+  * _1 Point: Observed_
 
 
 ### JavaScript Requirements
@@ -62,15 +57,15 @@ Dogz dogz dogz
   - **1 Point**: Observed
   - **0 Points**: Not Observed
 
-<!-- - **Remove a puppy from the roster.**
+* _Remove a puppy from the roster._
 
-  - **1 Point**: Observed -->
+  * _1 Point: Observed_
 
-<!-- - **Add a puppy to the roster.**
-  - **1 Point**: Observed
- -->
+* _Add a puppy to the roster._
+  * _1 Point: Observed_
 
 ## Total Points: 13
 
 
 CURRENT: 7 / 13
+

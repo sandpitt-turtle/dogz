@@ -107,7 +107,7 @@ button:hover {
   color: white;
   font-weight: lighter;
   padding: 12px 20px;
-  background-image: linear-gradient(to right, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)), url("/zoroeyes.webp"); /* Replace with the actual image URL */
+  background-image: linear-gradient(to right, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)), url("/zoroeyes.webp");
   background-size: cover;
   background-position: center;
   border: 1px solid black;
@@ -115,7 +115,7 @@ button:hover {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   margin-left: auto;
-  text-shadow: 1px 1px 2px black; /* Optional for better text visibility */
+  text-shadow: 1px 1px 2px black;
 }
 
 #show_form:hover {
@@ -163,10 +163,10 @@ button:hover {
   font-size: 14px;
   transition: background-color 0.3s, transform 0.3s;
   width: 80%;
-  background-image: linear-gradient(to left, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)), url("/zoroeyes.webp"); /* Replace with the actual image URL */
+  background-image: linear-gradient(to left, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)), url("/zoroeyes.webp");
   background-size: cover;
   background-position: center;
-  text-shadow: 1px 1px 2px black; /* Optional for better text visibility */
+  text-shadow: 1px 1px 2px black;
 }
 
 .details-btn, .back_to_all_players :hover {
@@ -343,7 +343,7 @@ main {
   position: relative;
   width: 100%;
   max-width: 300px;
-  height: 400px; /* Fixed height for all player blocks */
+  height: 400px;
   padding: 15px;
   border: 0.5px solid black;
   border-radius: 8px;
@@ -359,9 +359,9 @@ main {
 
 .player-block img {
   width: 100%;
-  height: 200px; /* Fixed height for the image */
+  height: 200px;
   -o-object-fit: cover;
-     object-fit: cover; /* Ensures image scales properly */
+     object-fit: cover;
   border-radius: 8px;
 }
 
@@ -377,16 +377,16 @@ main {
 }
 
 .player-block .button-container {
-  margin-top: auto; /* Pushes the buttons to the bottom */
-  width: 100%; /* Ensures the buttons align within the block */
+  margin-top: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Adds space between the buttons */
+  gap: 10px;
 }
 
 .player-block button {
-  width: 90%; /* Buttons take 90% of the block width */
+  width: 90%;
   padding: 10px;
   border: 1px solid black;
   border-radius: 4px;
@@ -403,12 +403,11 @@ main {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Single Player Block */
 .single-player-block {
   position: relative;
   width: 100%;
   max-width: 600px;
-  height: 500px; /* Fixed height for consistency */
+  height: 500px;
   padding: 20px;
   margin: 40px auto;
   border: 0.5px solid black;
@@ -424,7 +423,7 @@ main {
 
 .single-player-block img {
   width: 100%;
-  max-height: 250px; /* Fixed image height */
+  max-height: 250px;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 10px;
@@ -443,16 +442,16 @@ main {
 }
 
 .single-player-block .button-container {
-  margin-top: auto; /* Pushes buttons to the bottom */
-  width: 100%; /* Full width of the block */
+  margin-top: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px; /* Adds space between buttons */
+  gap: 10px;
 }
 
 .single-player-block button {
-  width: 80%; /* Buttons take 80% of the block width */
+  width: 80%;
   padding: 10px 15px;
   border: 1px solid black;
   border-radius: 4px;
@@ -496,7 +495,7 @@ main {
     align-items: center;
   }
   #show_form {
-    margin: 10px 0 0 0; /* Adds margin to separate the button from the header */
-    position: relative; /* Ensure it's part of the normal flow */
+    margin: 10px 0 0 0;
+    position: relative;
   }
 }

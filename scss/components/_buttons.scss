@@ -23,7 +23,7 @@ button:hover {
   padding: 12px 20px;
   background-image: 
     linear-gradient(to right, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)),
-    url("/zoroeyes.webp"); /* Replace with the actual image URL */
+    url("/zoroeyes.webp"); 
   background-size: cover;
   background-position: center;
   border: 1px solid black;
@@ -31,7 +31,7 @@ button:hover {
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
   margin-left: auto;
-  text-shadow: 1px 1px 2px black; /* Optional for better text visibility */
+  text-shadow: 1px 1px 2px black; 
 }
 
 #show_form:hover {
@@ -82,10 +82,10 @@ button:hover {
   width: 80%;
   background-image: 
     linear-gradient(to left, rgba(59, 42, 59, 0.8), rgba(56, 135, 106, 0.8)),
-    url("/zoroeyes.webp"); /* Replace with the actual image URL */
+    url("/zoroeyes.webp"); 
   background-size: cover;
   background-position: center;
-  text-shadow: 1px 1px 2px black; /* Optional for better text visibility */
+  text-shadow: 1px 1px 2px black; 
 }
 
 .details-btn, .back_to_all_players :hover {

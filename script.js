@@ -50,8 +50,8 @@ const fetchSinglePlayer = async (playerId) => {
     console.log(`fetching single player ${response}`)
     if (!response.ok) throw new Error(`Failed to fetch player #${playerId}`);
     const data = await response.json();
-    console.log("Single Player API Response:", data); // Log API response
-    return data.data; // Return the actual player object
+    console.log("Single Player API Response:", data); 
+    return data.data; 
   } catch (error) {
     console.error(`Error fetching player #${playerId}:`, error);
     return null;
@@ -136,7 +136,7 @@ const renderAllPlayers = (playerList) => {
     const playerBlock = document.createElement("div");
     playerBlock.classList.add("player-block");
     playerBlock.setAttribute("data-player-id", player.id || 'N/A');
-    const defaultImage = "/dog.jpg"; // Replace with your fallback image path
+    const defaultImage = "/dog.jpg"; 
     playerBlock.innerHTML = `
       <img src="${player.imageUrl || defaultImage}" alt="${player.name || 'Unknown'}" onerror="this.src='${defaultImage}'" />
       <h3>${player.name || 'Unknown'}</h3>
@@ -147,7 +147,7 @@ const renderAllPlayers = (playerList) => {
     playerListContainer.appendChild(playerBlock);
   });
 
-  setupPlayerButtons(); // Attach listeners
+  setupPlayerButtons(); 
 };
 
 
@@ -164,7 +164,7 @@ const setupPlayerButtons = () => {
     }
 
     if (event.target.classList.contains("details-btn")) {
-      console.log("Details button clicked:", playerId); // Log the button click and playerId
+      console.log("Details button clicked:", playerId); 
       const player = await fetchSinglePlayer(playerId);
       if (player) {
         renderSinglePlayer(player);
@@ -228,8 +228,8 @@ const renderSinglePlayer = (player) => {
     }
 
     try {
-      await removePlayer(player.id); // Remove the player from the API
-      await updatePlayerList(); // Re-render the list of players
+      await removePlayer(player.id); 
+      await updatePlayerList(); 
       alert(`Player ${player.name} has been removed.`);
     } catch (error) {
       console.error(`Failed to remove player ${player.id}:`, error);
