@@ -6,36 +6,34 @@ Dogz dogz dogz
 
 ### Github Project
 
-- **Github repository has at least one branch in addition to main branch.**
+<!-- - **Github repository has at least one branch in addition to main branch.**
 
-  - **1 Point**: Observed
-  - **0 Points**: Not Observed
+  - **1 Point**: Observed -->
 
-- **Student has at least one commit towards the final result.**
-  - **1 Point**: Observed
-  - **0 Points**: Not Observed
+<!-- - **Student has at least one commit towards the final result.**
+  - **1 Point**: Observed -->
+
 
 ### HTML Requirements
 
 - **Puppy Bowl players are rendered on card elements with their information.**
   - **1 Point**: Observed
-  - **0 Points**: Not Observed
 
 ### CSS Requirements
 
-- **Form is styled and easy to use.**
+<!-- - **Form is styled and easy to use.**
 
   - **1 Point**: Observed
-  - **0 Points**: Not Observed
+ -->
 
-- **Player cards are styled.**
+<!-- - **Player cards are styled.**
 
-  - **1 Point**: Observed
-  - **0 Points**: Not Observed
+  - **1 Point**: Observed -->
 
-- **Considers mobile-first design principles and uses one of the following: flex, grid or media queries.**
-  - **1 Point**: Observed
-  - **0 Points**: Not Observed
+
+<!-- - **Considers mobile-first design principles and uses one of the following: flex, grid or media queries.**
+  - **1 Point**: Observed -->
+
 
 ### JavaScript Requirements
 
@@ -65,13 +63,15 @@ Dogz dogz dogz
   - **1 Point**: Observed
   - **0 Points**: Not Observed
 
-- **Remove a puppy from the roster.**
+<!-- - **Remove a puppy from the roster.**
 
-  - **1 Point**: Observed
-  - **0 Points**: Not Observed
+  - **1 Point**: Observed -->
 
-- **Add a puppy to the roster.**
+<!-- - **Add a puppy to the roster.**
   - **1 Point**: Observed
-  - **0 Points**: Not Observed
+ -->
 
 ## Total Points: 13
+
+
+CURRENT: 7 / 13

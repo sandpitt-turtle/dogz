@@ -128,15 +128,9 @@ const renderAllPlayers = (playerList) => {
     const playerBlock = document.createElement("div");
     playerBlock.classList.add("player-block");
     playerBlock.setAttribute("data-player-id", player.id);
-
-    const fallbackImage = "/dog.jpg";
-
+    const defaultImage = "/dog.jpg"; // Replace with your fallback image path
     playerBlock.innerHTML = `
-      <img 
-        src="${player.imageUrl}" 
-        alt="${player.name}" 
-        onerror="this.onerror=null;this.src='${fallbackImage}'"
-      />
+      <img src="${player.imageUrl}" alt="${player.name}" onerror="this.src='${defaultImage}'" />
       <h3>${player.name}</h3>
       <p>ID: ${player.id}</p>
       <button class="details-btn">See Details</button>
@@ -183,23 +177,34 @@ const setupPlayerButtons = () => {
  */
 const renderSinglePlayer = (player) => {
   const main = document.querySelector("main");
-  main.innerHTML = `
-  <div class="player-block single-player-block">
-    <img src="${player.imageUrl}" alt="${player.name}" />
-    <h3>${player.name}</h3>
-    <p>ID: ${player.id}</p>
-    <p>Breed: ${player.breed}</p>
-    <p>Team: ${player.team || "Unassigned"}</p>
-    <button class="back_to_all_players">Back to all players</button>
-    <button class="remove-btn">Remove from roster</button>
-  </div>
-`;
 
-main.querySelector(".back_to_all_players").addEventListener("click", updatePlayerList);
-main.querySelector(".remove-btn").addEventListener("click", async () => {
-  await removePlayer(player.id);
-});
+  main.innerHTML = `
+    <div class="player-block single-player-block" data-player-id="${player.id}">
+      <img src="${player.imageUrl || '/dog.jpg'}" alt="${player.name || 'Unknown'}" />
+      <h3>${player.name || 'Unknown'}</h3>
+      <p>ID: ${player.id || 'N/A'}</p>
+      <p>Breed: ${player.breed || 'Unknown'}</p>
+      <p>Team: ${player.team || 'Unassigned'}</p>
+      <div class="button-container">
+        <button class="back_to_all_players">Back to all players</button>
+        <button class="remove-btn">Remove from roster</button>
+      </div>
+    </div>
+  `;
+
+  // Ensure buttons are added after the DOM is updated
+  main.querySelector(".back_to_all_players").addEventListener("click", async () => {
+    console.log("Back to All Players clicked");
+    await updatePlayerList();
+  });
+
+  main.querySelector(".remove-btn").addEventListener("click", async () => {
+    console.log("Remove from Roster clicked");
+    await removePlayer(player.id);
+    await updatePlayerList();
+  });
 };
+
 
 
 
