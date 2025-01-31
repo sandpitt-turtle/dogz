@@ -1,3 +1,8 @@
+
+***Those that are not strikethru are requirements I am not sure are met or not.***
+
+
+
 # Puppy Bowl Career Simulation (Core) - RUBRIC
 
 ## Criteria
