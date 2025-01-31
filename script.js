@@ -164,10 +164,10 @@ const setupPlayerButtons = () => {
     }
 
     if (event.target.classList.contains("details-btn")) {
-      console.log("Details button clicked:", playerId); 
-      const player = await fetchSinglePlayer(playerId);
-      if (player) {
-        renderSinglePlayer(player);
+      console.log("Details button clicked:", playerId);
+      const playerData = await fetchSinglePlayer(playerId);
+      if (playerData && playerData.player) {
+        renderSinglePlayer(playerData.player); // Extract and pass the nested player object
       } else {
         alert("Error fetching player details. Please try again.");
       }
@@ -195,28 +195,34 @@ const renderSinglePlayer = (player) => {
   console.log("Player object in renderSinglePlayer:", player);
 
   const main = document.querySelector("main");
-  if (!player) {
-    main.innerHTML = `<p>Error loading player details. Please try again later.</p>`;
-    return;
-  }
+  main.innerHTML = ""; // Clears main completely
 
-  main.innerHTML = `
-    <div class="player-block single-player-block" data-player-id="${player.id || 'N/A'}">
-      <img src="${player.imageUrl || '/dog.jpg'}" alt="${player.name || 'Unknown'}" onerror="this.src='/dog.jpg'" />
-      <h3>${player.name || 'Unknown'}</h3>
-      <p>ID: ${player.id || 'N/A'}</p>
-      <p>Breed: ${player.breed || 'Unknown'}</p>
-      <p>Status: ${player.status || 'Unspecified'}</p>
-      <div class="button-container">
-        <button class="back_to_all_players">Back to all players</button>
-        <button class="remove-btn">Remove from roster</button>
-      </div>
+  const playerBlock = document.createElement("div");
+  playerBlock.classList.add("player-block", "single-player-block");
+  playerBlock.setAttribute("data-player-id", player.id || 'N/A');
+
+  playerBlock.innerHTML = `
+    <img src="${player.imageUrl || '/dog.jpg'}" alt="${player.name || 'Unknown'}" onerror="this.src='/dog.jpg'" />
+    <h3>${player.name || 'Unknown'}</h3>
+    <p>ID: ${player.id || 'N/A'}</p>
+    <p>Breed: ${player.breed || 'Unknown'}</p>
+    <p>Status: ${player.status || 'Unspecified'}</p>
+    <div class="button-container">
+      <button class="back_to_all_players">Back to all players</button>
+      <button class="remove-btn">Remove from roster</button>
     </div>
   `;
 
+  main.appendChild(playerBlock);
+
+
+
+  
   main.querySelector(".back_to_all_players").addEventListener("click", async () => {
     console.log("Back to All Players clicked");
-    await updatePlayerList();
+    main.innerHTML = ""; // Properly clears the single player view
+    main.appendChild(playerListContainer); // Re-adds the player list correctly
+    await updatePlayerList(); // Ensure player list is properly fetched
   });
 
   main.querySelector(".remove-btn").addEventListener("click", async () => {
@@ -261,7 +267,7 @@ const renderNewPlayerForm = () => {
     event.preventDefault();
 
     const name = document.getElementById("name").value.trim();
-    const imageUrl = document.getElementById("imageUrl").value.trim();
+    const imageUrl = document.getElementById("imageUrl").value.trim() || "/dog.jpg"; 
     const breed = document.getElementById("breed").value.trim();
     const team = document.getElementById("team").value.trim() || "Unassigned";
 
@@ -285,8 +291,9 @@ const renderNewPlayerForm = () => {
 
 const init = async () => {
   await updatePlayerList();
-  renderNewPlayerForm();
+  renderNewPlayerForm(); // Ensure this runs properly
 };
+
 
 init();
 

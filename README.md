@@ -2,7 +2,7 @@
 
 ## Criteria
 
-* ~~Github repository has at least one branch in addition to main branch.~~  
+* ~~Github repository has at least one branchcl in addition to main branch.~~  
   * ~~1 Point: Observed~~
 
 * ~~Student has at least one commit towards the final result.~~  
